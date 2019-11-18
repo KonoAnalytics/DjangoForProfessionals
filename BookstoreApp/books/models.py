@@ -20,6 +20,10 @@ class Book(models.Model):
     def get_absolute_url(self):
         return reverse("book_detail", args=[str(self.id)])
 
+    class Meta:
+        indexes = [models.Index(fields=["id"], name="id_index")]
+        permissions = [("speical_status", "Can read all books")]
+
 
 class Review(models.Model):
     book = models.ForeignKey(Book, on_delete=models.CASCADE, related_name="reviews")
