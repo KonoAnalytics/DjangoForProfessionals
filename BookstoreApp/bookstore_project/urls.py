@@ -19,12 +19,12 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 
-ENVIRONMENT = os.environ.get('ENVIRONMENT', default='production')
-ADMIN_PATH = os.environ.get('ADMIN_PATH', default='admin')
-if ENVIRONMENT != 'development':
+ENVIRONMENT = os.environ.get("ENVIRONMENT", default="production")
+ADMIN_PATH = os.environ.get("ADMIN_PATH", default="admin")
+if ENVIRONMENT != "development":
     admin_path = ADMIN_PATH
 else:
-    admin_path = 'admin'
+    admin_path = "admin"
 
 
 urlpatterns = [
