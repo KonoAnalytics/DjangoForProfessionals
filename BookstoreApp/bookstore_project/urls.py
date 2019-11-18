@@ -13,14 +13,23 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+import os
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 
+ENVIRONMENT = os.environ.get('ENVIRONMENT', default='production')
+ADMIN_PATH = os.environ.get('ADMIN_PATH', default='admin')
+if ENVIRONMENT != 'development':
+    admin_path = ADMIN_PATH
+else:
+    admin_path = 'admin'
+
+
 urlpatterns = [
     # Django Admin
-    path("admin/", admin.site.urls),
+    path(admin_path, admin.site.urls),
     # User management
     path("accounts/", include("allauth.urls")),
     # Local apps
